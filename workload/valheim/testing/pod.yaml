@@ -21,6 +21,8 @@ spec:
       volumeMounts:
       - name: data
         mountPath: /mygame/gamefiles
+      - name: saves
+        mountPath: /mygame/saves
   containers:
   - name: valheim-dev-pod
     image: image-registry.openshift-image-registry.svc:5000/games-dev/okd-valheim
@@ -37,3 +39,6 @@ spec:
       - name: data
         persistentVolumeClaim:
           claimName: valheim-dev-data
+      - name: saves
+        persistentVolumeClaim:
+          claimName: valheim-dev-saves
