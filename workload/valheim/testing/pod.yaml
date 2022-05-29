@@ -3,8 +3,24 @@ kind: Pod
 metadata:
   name: valheim-test-pod
   labels:
-    name: valheim-test-game
+    name: valheim-dev
 spec:
+  initContainers:
+    - name: steamcmd
+      image: image-registry.openshift-image-registry.svc:5000/games-dev/okd-steamcmd:latest
+      env:
+        - name: APPNUMBER
+          value: '896660'
+      resources:
+        limits:
+          cpu: "4"
+          memory: "4Gi"
+        requests:
+          cpu: "2"
+          memory: "4Gi"
+      volumeMounts:
+      - name: data
+        mountPath: /mygame/gamefiles
   containers:
   - name: valheim-dev-pod
     image: image-registry.openshift-image-registry.svc:5000/games-dev/okd-valheim
@@ -14,3 +30,7 @@ spec:
         cpu: "2"
     ports:
       - containerPort: 2456
+  volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: valheim-dev-data
