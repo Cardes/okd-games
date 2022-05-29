@@ -1,0 +1,28 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: valheim-build-game
+  labels:
+    application: okd-valheim  
+spec:
+  source:
+    git:
+      ref: dev
+      uri: 'https://github.com/Cardes/steamcmd.git'
+    contextDir: gameimages/valheim
+    type: Git
+  strategy:
+    type: Docker
+    dockerStrategy:
+      dockerfilePath: Containerfile
+      from:
+        kind: "ImageStreamTag"
+        name: "ubuntu-22:latest"
+    triggers:
+    - type: ImageChange
+      imageChange: {}
+    - type: ConfigChange
+  output:
+    to:
+      kind: ImageStreamTag
+      name: okd-valheim:latest
