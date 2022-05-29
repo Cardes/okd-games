@@ -1,0 +1,9 @@
+kind: Kustomization
+
+resources:
+  - ../../bases
+
+patchesStrategicMerge:
+  - configmap_admin.yaml
+  - configmap_server.yaml
+  - pvc.yaml

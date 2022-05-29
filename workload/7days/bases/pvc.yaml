@@ -1,0 +1,25 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: 7days-data
+  labels:
+    app: 7days
+spec:
+ accessModes: [ "ReadWriteOnce" ]
+ storageClassName: ''
+ resources:
+   requests:
+     storage: 20Gi
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: 7days-saves
+  labels:
+    app: 7days
+spec:
+ accessModes: [ "ReadWriteOnce" ]
+ storageClassName: ''
+ resources:
+   requests:
+     storage: 2Gi

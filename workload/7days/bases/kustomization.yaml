@@ -1,0 +1,11 @@
+kind: Kustomization
+
+commonLabels:
+  app: 7days
+
+resources:
+  - configmap_admin.yaml
+  - configmap_server.yaml
+  - deployment.yaml
+  - pvc.yaml
+  - service.yaml

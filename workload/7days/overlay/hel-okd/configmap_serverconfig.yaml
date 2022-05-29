@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: 7days
+data:
+    serverconfig.xml: |
+      <?xml version="1.0"?>
+      <ServerSettings>
+        <!-- Put your serverconfig entries here, i do not provide this content :) -->
+      </ServerSettings>
+

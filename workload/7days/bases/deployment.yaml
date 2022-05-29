@@ -1,0 +1,88 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: 7days
+spec:
+  selector:
+    matchLabels:
+      app: 7days
+  strategy:
+    type: Recreate
+  progressDeadlineSeconds: 720
+  serviceName: "7days"
+  template:
+    metadata:
+      labels:
+        app: 7days
+    spec:
+      terminationGracePeriodSeconds: 30
+      initContainers:
+        - name: steamcmd
+          image: image-registry.openshift-image-registry.svc:5000/games-dev/okd-steamcmd:latest
+          env:
+            - name: APPNUMBER
+              value: '294420'
+          resources:
+            limits:
+              cpu: "4"
+              memory: "5Gi"
+            requests:
+              cpu: "2"
+              memory: "4Gi"
+          volumeMounts:
+          - name: data
+            mountPath: /mygame/gamefiles
+      containers:
+      - name: 7days-dedicated
+        image: image-registry.openshift-image-registry.svc:5000/games-dev/okd-7daystodie:latest
+        imagePullPolicy: IfNotPresent
+        resources:
+          limits:
+            cpu: "3"
+            memory: "12Gi"
+          requests:
+            cpu: 500m
+            memory: "4Gi"
+        readinessProbe:
+          tcpSocket:
+            port: 26900
+          initialDelaySeconds: 720
+          periodSeconds: 30
+        ports:
+        - containerPort: 26900
+          protocol: TCP
+          name: s7days1
+        - containerPort: 26900
+          protocol: UDP
+          name: s7days2
+        - containerPort: 26901
+          protocol: UDP
+          name: s7days3
+        - containerPort: 26902
+          protocol: UDP
+          name: s7days4
+        volumeMounts:
+        - name: serverconfig
+          mountPath: /mygame/gamefiles/serverconfig_template.xml
+          subPath: serverconfig_template.xml
+        - name: adminconfig
+          mountPath: /mygame/saves/serveradmin_template.xml
+          subPath: serveradmin_template.xml
+        - name: data
+          mountPath: /mygame/gamefiles
+        - name: saves
+          mountPath: /mygame/saves
+      volumes:
+      - name: serverconfig
+        configMap:
+          name: 7days-serverconfig
+      - name: adminconfig
+        configMap:
+          name: 7days-adminconfig
+      - name: data
+        persistentVolumeClaim:
+          claimName: 7days-data
+      - name: saves
+        persistentVolumeClaim:
+          claimName: 7days-saves

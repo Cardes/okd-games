@@ -1,0 +1,24 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: valheim-game
+  labels:
+    app: valheim-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: valheim-game-name
+  ports:
+  - port: 2456
+    targetPort: 2456
+    name: val1
+    protocol: UDP
+  - port: 2457
+    targetPort: 2457
+    name: val2
+    protocol: UDP
+  - port: 2458
+    targetPort: 2458
+    name: val3
+    protocol: UDP

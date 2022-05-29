@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: 7days-adminconfig
+data:
+    serveradmin.xml: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <adminTools>
+          <!-- Put your aminconfig entries here, i do not provide this content :) -->
+        </adminTools>

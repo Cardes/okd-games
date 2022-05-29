@@ -1,0 +1,17 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: 7days-data
+  labels:
+    app: 7days
+spec:
+ storageClassName: 'ocs-external-storagecluster-ceph-rbd'
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: 7days-saves
+  labels:
+    app: 7days
+spec:
+ storageClassName: 'ocs-external-storagecluster-ceph-rbd'

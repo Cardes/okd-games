@@ -4,4 +4,6 @@ metadata:
   labels:
     application: okd-steamcmd
   name: okd-steamcmd
-
+spec:
+  lookupPolicy:
+    local: false

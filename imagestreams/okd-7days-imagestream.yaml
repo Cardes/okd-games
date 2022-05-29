@@ -4,4 +4,6 @@ metadata:
   labels:
     application: okd-7daystodie
   name: okd-7daystodie
-
+spec:
+  lookupPolicy:
+    local: false

@@ -17,7 +17,7 @@ spec:
       dockerfilePath: Containerfile
       from:
         kind: "ImageStreamTag"
-        name: "okd-steamcmd:latest"
+        name: "ubuntu-22:latest"
     triggers:
     - type: ImageChange
       imageChange: {}

@@ -9,12 +9,15 @@ spec:
     git:
       ref: dev
       uri: 'https://github.com/Cardes/steamcmd.git'
-    contextDir: baseimage
+    contextDir: initcontainer
     type: Git
   strategy:
     type: Docker
     dockerStrategy:
       dockerfilePath: Containerfile
+      from:
+        kind: "ImageStreamTag"
+        name: "steamcmd-20:latest"
   output:
     to:
       kind: ImageStreamTag

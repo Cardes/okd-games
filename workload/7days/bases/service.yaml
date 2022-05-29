@@ -1,0 +1,42 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: s7days-tcp
+  namespace: 7days
+  labels:
+    app: 7days
+spec:
+  type: LoadBalancer
+  selector:
+    app: 7days
+  ports:
+  - port: 26900
+    targetPort: 26900
+    name: s7days1
+    protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: s7days-udp
+  namespace: 7days
+  labels:
+    app: 7days
+spec:
+  type: LoadBalancer
+  selector:
+    app: 7days
+  ports:
+  - port: 26900
+    targetPort: 26900
+    name: s7days2
+    protocol: UDP
+  - port: 26901
+    targetPort: 26901
+    name: s7days3
+    protocol: UDP
+  - port: 26902
+    targetPort: 26902
+    name: s7days4
+    protocol: UDP
