@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: valheim-test-pod
+  labels:
+    name: valheim-test-game
+spec:
+  containers:
+  - name: valheim-dev-pod
+    image: image-registry.openshift-image-registry.svc:5000/games-dev/okd-valheim
+    resources:
+      limits:
+        memory: "2Gi"
+        cpu: "2"
+    ports:
+      - containerPort: 2456
