@@ -30,6 +30,9 @@ spec:
         cpu: "2"
     ports:
       - containerPort: 2456
+    volumeMounts:
+    - name: data
+      mountPath: /mygame/gamefiles
   volumes:
       - name: data
         persistentVolumeClaim:
