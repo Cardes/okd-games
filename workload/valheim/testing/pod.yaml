@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: valheim-test-pod
+  name: game-test-pod
   labels:
-    name: valheim-dev
+    name: game-dev
 spec:
   initContainers:
     - name: steamcmd
@@ -24,7 +24,7 @@ spec:
       - name: saves
         mountPath: /mygame/saves
   containers:
-  - name: valheim-dev-pod
+  - name: game-dev-pod
     image: image-registry.openshift-image-registry.svc:5000/games-dev/okd-valheim
     resources:
       limits:
@@ -38,7 +38,7 @@ spec:
   volumes:
       - name: data
         persistentVolumeClaim:
-          claimName: valheim-dev-data
+          claimName: game-dev-data
       - name: saves
         persistentVolumeClaim:
-          claimName: valheim-dev-saves
+          claimName: game-dev-saves

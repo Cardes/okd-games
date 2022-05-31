@@ -1,9 +1,9 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: valheim-dev-data
+  name: game-dev-data
   labels:
-    app: valheim-dev
+    app: game-dev
 spec:
  accessModes: [ "ReadWriteOnce" ]
  resources:
@@ -13,9 +13,9 @@ spec:
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: valheim-dev-saves
+  name: game-dev-saves
   labels:
-    app: valheim-dev
+    app: game-dev
 spec:
  accessModes: [ "ReadWriteOnce" ]
  resources:
