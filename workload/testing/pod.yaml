@@ -10,7 +10,7 @@ spec:
       image: image-registry.openshift-image-registry.svc:5000/games-dev/okd-steamcmd:latest
       env:
         - name: APPNUMBER
-          value: '896660'
+          value: '1829350'
       resources:
         limits:
           cpu: "4"
